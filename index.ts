@@ -1,9 +1,11 @@
 import {Express , Request , Response} from 'express';
 import express = require('express');
+import * as database from './config/database';
+import * as dotenv from 'dotenv';
 
+dotenv.config();
+database.connect();
 
-// dotenv.config();
-// database.connect();
 const app : Express = express();
 const port : number | string = process.env.PORT || 3000;
 //PUG
