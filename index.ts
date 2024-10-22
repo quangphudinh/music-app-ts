@@ -4,9 +4,14 @@ import express = require('express');
 
 // dotenv.config();
 // database.connect();
-
 const app : Express = express();
 const port : number | string = process.env.PORT || 3000;
+//PUG
+app.set('views', './views');
+app.set('view engine', 'pug');
+//END PUG
+
+
 
 // app.use(cors());
 
@@ -16,7 +21,7 @@ const port : number | string = process.env.PORT || 3000;
 // mainV1Routes(app);
 
 app.get("/topics" , (req : Request , res : Response) => {
-    res.send("Hello World!");
+    res.render("client/pages/topics/index.pug")
 })
 
 app.listen(port, () => {
