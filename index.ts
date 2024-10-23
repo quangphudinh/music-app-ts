@@ -1,7 +1,10 @@
-import {Express , Request , Response} from 'express';
+import {Express } from 'express';
 import express = require('express');
 import * as database from './config/database';
 import * as dotenv from 'dotenv';
+
+import clientRoutes from './routers/client/index.router';
+
 
 dotenv.config();
 database.connect();
@@ -22,9 +25,8 @@ app.set('view engine', 'pug');
 
 // mainV1Routes(app);
 
-app.get("/topics" , (req : Request , res : Response) => {
-    res.render("client/pages/topics/index.pug")
-})
+//client routes
+clientRoutes(app);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
