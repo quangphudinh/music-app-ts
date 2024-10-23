@@ -16,7 +16,7 @@ app.set('views', './views');
 app.set('view engine', 'pug');
 //END PUG
 
-
+app.use(express.static('public'));
 
 // app.use(cors());
 
