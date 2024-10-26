@@ -20,7 +20,7 @@ export const list = async (req: Request, res: Response) => {
     status: "active",
     deleted: false,
   }).select("avatar title slug singerId like createdAt");
-  console.log(songs);
+  // console.log(songs);
 
   for (const item of songs) {
     const infoSinger = await Singer.findOne({
