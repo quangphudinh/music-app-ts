@@ -6,22 +6,33 @@ header.header
                     a(href="/")
                         img(src="/images/pngegg.png", alt="logo")
             .col-5
-                form(
-                    action="/search/result"
-                    method="GET"
-                )
-                    div(class="form-group d-flex mb-0")
-                        input(
-                            type="text"
-                            placeholder="Nhập từ khóa..."
-                            class="form-control"
-                            name="keyword"
-                            value=keyword
-                        )
-                        button(
-                            type="submit"
-                            class="btn btn-primary"
-                        ) Tìm
+                .box-search
+                    form(
+                        action="/search/result"
+                        method="GET"
+                    )
+                        div(class="form-group d-flex mb-0")
+                            input(
+                                type="text"
+                                placeholder="Nhập từ khóa..."
+                                class="form-control"
+                                name="keyword"
+                                value=keyword
+                            )
+                            button(
+                                type="submit"
+                                class="btn btn-primary"
+                            ) Tìm
+                    .inner-suggest
+                        .inner-list 
+                            //- a(href=`/songs/detail/:slugSong` class="inner-item")
+                            //-     .inner-image 
+                            //-         img(src="")
+                            //-     .inner-info 
+                            //-         .inner-title Cat doi noi sau
+                            //-         .inner-singer 
+                            //-             <i class="fa-solid fa-microphone-lines"></i> Tang Duy Tan 
+                            
             .col-4 
                 .inner-menu 
                     ul 
