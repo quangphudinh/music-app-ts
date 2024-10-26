@@ -161,6 +161,7 @@
     color: #777;
 }
 
+/* Like */
 .singer-detail .container .row .col-12 .inner-actions .inner-like {
     cursor: pointer;
 }
@@ -173,7 +174,22 @@
 .singer-detail .container .row .col-12 .inner-actions .inner-like.active i{
     font-weight: 900;
 }
-
+/* End Like */
+/* Heart */
+.singer-detail .container .row .col-12 .inner-actions .inner-heart {
+    cursor: pointer;
+}
+.singer-detail .container .row .col-12 .inner-actions .inner-heart i{
+    color: #ff0000;
+}
+.singer-detail .container .row .col-12 .inner-actions .inner-heart.active {
+    color: #ff0000;
+}
+.singer-detail .container .row .col-12 .inner-actions .inner-heart.active i{
+    font-weight: 900;
+}
+/* End Heart */
+/* Play */
 .singer-detail .container .row .col-12 .inner-play {
     display: flex;
     align-items: center;

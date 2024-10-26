@@ -13,5 +13,5 @@ const favoriteSongSchema = new mongoose.Schema(
         timestamps : true
     }
 )
-export const FavoriteSong = mongoose.model('FavoriteSong', favoriteSongSchema, 'favorite_songs');
+export const FavoriteSong = mongoose.model('FavoriteSong', favoriteSongSchema, 'favorite-songs');
 
