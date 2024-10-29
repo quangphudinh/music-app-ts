@@ -2,6 +2,7 @@ import {Express } from 'express';
 import express = require('express');
 import * as database from './config/database';
 import * as dotenv from 'dotenv';
+import methodOverride from 'method-override';
 // import bodyParser = require('body-parser');
 
 import clientRoutes from './routers/client/index.router';
@@ -29,6 +30,9 @@ app.set('view engine', 'pug');
 //TinyMCE
 app.use('/tinymce', express.static(path.join(__dirname , "node_modules", 'tinymce')));
 //END TinyMCE
+
+// Method override
+app.use(methodOverride('_method'));
 
 app.use(express.static('public'));
 
