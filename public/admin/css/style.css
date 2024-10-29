@@ -45,3 +45,35 @@
     left: 150px;
     width: calc(100% - 180px);
 }
+
+/* Image preview */
+.image-preview{
+    width: 150px;
+    height: auto;
+    margin-top: 15px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    
+}
+
+.image-preview[src='']{
+    display: none;
+}
+
+.image-group{
+    position: relative;
+}
+
+.btn-close{
+    position: absolute;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    top : 5px;
+    left: 150px;
+    cursor: pointer;
+    display: none;
+}
+
+/* End image preview */
