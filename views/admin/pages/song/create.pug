@@ -42,6 +42,7 @@ block main
                 each item in singers 
                     option(value= item.id) #{item.fullName} 
        
+
         div(
             class="form-group"
             upload-image
@@ -63,7 +64,20 @@ block main
                     class="image-preview"  
                 )
                 button(class="btn btn-close" remove-image-upload) x
-            
+
+        div(class="form-group" upload-audio)
+            label(for="audio") File âm thanh
+            input(
+                type="file"
+                class="form-control-file"
+                id="audio"
+                name="audio"
+                accept="audio/*"
+                upload-audio-input
+                )    
+            audio(controls upload-audio-play)  
+                source(src="")        
+
         div(class="form-group")
             lable(for="desc") Mô tả
             textarea(

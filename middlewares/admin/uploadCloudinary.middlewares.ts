@@ -7,37 +7,66 @@ import { buffer } from "stream/consumers";
 dotenv.config();
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET
-})
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const streamUpload = (buffer : any) => {
-            return new Promise((resolve, reject) => {
-                let stream = cloudinary.uploader.upload_stream({resource_type: "auto"},
-                    (error, result) => {
-                        if (result) {
-                            resolve(result);
-                        } else {
-                            reject(error);
-                        }
-                    });
+const streamUpload = (buffer: any) => {
+  return new Promise((resolve, reject) => {
+    let stream = cloudinary.uploader.upload_stream(
+      { resource_type: "auto" },
+      (error, result) => {
+        if (result) {
+          resolve(result);
+        } else {
+          reject(error);
+        }
+      }
+    );
 
-                streamifier.createReadStream(buffer).pipe(stream);
-            });
-        };
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+};
 
-const uploadToCloudinary = async (buffer : any) => {
-    let result = await streamUpload(buffer);
-    return result["url"];
-}
+const uploadToCloudinary = async (buffer: any) => {
+  let result = await streamUpload(buffer);
+  return result["url"];
+};
 
-export const uploadSingle = async (req : Request, res : Response, next : NextFunction) => {
-    try {
-        const result = await uploadToCloudinary(req["file"].buffer);
-        req.body[req["file"].fieldname] = result;
-    } catch (error) {
+// chỉ upload được 1 file (ảnh , âm thanh , .....)
+export const uploadSingle = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const result = await uploadToCloudinary(req["file"].buffer);
+    req.body[req["file"].fieldname] = result;
+  } catch (error) {
+    console.log(error);
+  }
+  next();
+};
+
+// Upload nhiều file lên cùng lúc
+export const uploadFields = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+//   console.log(req["files"]);
+  for (const key in req["files"]) {
+    req.body[key] = [];
+    const array = req["files"][key];
+    for (const item of array) {
+      try {
+        const result = await uploadToCloudinary(item.buffer);
+        req.body[key].push(result);
+      } catch (error) {
         console.log(error);
+      }
     }
-    next();
-}
+  }
+  next();
+};
