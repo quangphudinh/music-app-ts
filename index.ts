@@ -2,6 +2,7 @@ import {Express } from 'express';
 import express = require('express');
 import * as database from './config/database';
 import * as dotenv from 'dotenv';
+// import bodyParser = require('body-parser');
 
 import clientRoutes from './routers/client/index.router';
 import adminRoutes from './routers/admin/index.router';
@@ -14,6 +15,12 @@ database.connect();
 
 const app : Express = express();
 const port : number | string = process.env.PORT || 3000;
+
+// Body parser
+// (Nếu dùng cái này thì k cần cài body parser)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 //PUG
 app.set('views', './views');
 app.set('view engine', 'pug');
@@ -27,8 +34,7 @@ app.use(express.static('public'));
 
 // app.use(cors());
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
+
 
 // mainV1Routes(app);
 
