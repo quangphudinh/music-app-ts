@@ -4,13 +4,18 @@ const aplayer = document.querySelector('#aplayer');
 if (aplayer) {
     let datasong = JSON.parse(aplayer.getAttribute('data-song'))
     let datasinger = JSON.parse(aplayer.getAttribute('data-singer'))
+    
+    // console.log(datasong.lyrics)
+
     const ap = new APlayer({
         container: aplayer,
+        lrcType: 1,
         audio: [{
             name: datasong.title,
             artist: datasinger.fullName,
             url: datasong.audio,
             cover: datasong.avatar,
+            lrc : `${datasong.lyrics}`
         },
         ],
         autoplay: true,
