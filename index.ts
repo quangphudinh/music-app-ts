@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 //PUG
-app.set('views', './views');
+app.set('views', `${__dirname}/views`);
 app.set('view engine', 'pug');
 //END PUG
 
@@ -34,7 +34,7 @@ app.use('/tinymce', express.static(path.join(__dirname , "node_modules", 'tinymc
 // Method override
 app.use(methodOverride('_method'));
 
-app.use(express.static('public'));
+app.use(express.static(`${__dirname}/public`));
 
 // app.use(cors());
 
